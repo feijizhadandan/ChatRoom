@@ -7,7 +7,7 @@ public class UserServiceFactory {
 
     private static UserServiceImpl userService = new UserServiceImpl();
 
-    public static UserServiceImpl getSessionService() {
+    public static UserServiceImpl getUserService() {
         return userService;
     }
 }

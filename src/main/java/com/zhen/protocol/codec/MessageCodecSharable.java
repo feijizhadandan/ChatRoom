@@ -6,8 +6,13 @@ import com.zhen.entity.Message.*;
 import com.zhen.entity.Message.chat.ChatRequestMessage;
 import com.zhen.entity.Message.chat.ChatToMessage;
 import com.zhen.entity.Message.group.*;
+import com.zhen.entity.Message.group.response.CheckMembersResponseMessage;
+import com.zhen.entity.Message.group.response.CheckMyGroupsResponseMessage;
+import com.zhen.entity.Message.loadRecord.LoadRecordRequestMessage;
 import com.zhen.entity.Message.login.LoginRequestMessage;
 import com.zhen.entity.Message.login.LoginResponseMessage;
+import com.zhen.entity.Message.register.RegisterRequestMessage;
+import com.zhen.entity.Message.register.RegisterResponseMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandler;
@@ -95,6 +100,11 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         if (messageType == MessageType.RESPONSE_MESSAGE)
             return JSON.parseObject(msgJson, ResponseMessage.class);
 
+        if (messageType == MessageType.REGISTER_REQUEST_MESSAGE)
+            return JSON.parseObject(msgJson, RegisterRequestMessage.class);
+        if (messageType == MessageType.REGISTER_RESPONSE_MESSAGE)
+            return JSON.parseObject(msgJson, RegisterResponseMessage.class);
+
         if (messageType == MessageType.LOGIN_REQUEST_MESSAGE)
             return JSON.parseObject(msgJson, LoginRequestMessage.class);
         if (messageType == MessageType.LOGIN_RESPONSE_MESSAGE)
@@ -117,12 +127,22 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
 
         if (messageType == MessageType.CHECK_GROUP_MEMBERS_REQUEST_MESSAGE)
             return JSON.parseObject(msgJson, CheckMembersRequestMessage.class);
+        if (messageType == MessageType.CHECK_GROUP_MEMBERS_RESPONSE_MESSAGE)
+            return JSON.parseObject(msgJson, CheckMembersResponseMessage.class);
+
+        if (messageType == MessageType.CHECK_MY_GROUPS_REQUEST_MESSAGE)
+            return JSON.parseObject(msgJson, CheckMyGroupsRequestMessage.class);
+        if (messageType == MessageType.CHECK_MY_GROUPS_RESPONSE_MESSAGE)
+            return JSON.parseObject(msgJson, CheckMyGroupsResponseMessage.class);
 
         if (messageType == MessageType.JOIN_GROUP_REQUEST_MESSAGE)
             return JSON.parseObject(msgJson, JoinGroupRequestMessage.class);
 
         if (messageType == MessageType.QUIT_GROUP_REQUEST_MESSAGE)
             return JSON.parseObject(msgJson, QuitGroupRequestMessage.class);
+
+        if (messageType == MessageType.LOAD_RECORD_REQUEST_MESSAGE)
+            return JSON.parseObject(msgJson, LoadRecordRequestMessage.class);
 
 
         return null;

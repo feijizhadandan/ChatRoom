@@ -9,8 +9,11 @@ public class JoinGroupRequestMessage extends Message {
 
     private String groupName;
 
-    public JoinGroupRequestMessage(String groupName) {
+    private String username;
+
+    public JoinGroupRequestMessage(String groupName, String username) {
         this.groupName = groupName;
+        this.username = username;
         messageType = MessageType.JOIN_GROUP_REQUEST_MESSAGE;
     }
 }

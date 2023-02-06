@@ -96,7 +96,18 @@ public class MessageType {
      */
     public static final int CHECK_MY_GROUPS_RESPONSE_MESSAGE = 20;
 
+    /**
+     * 统一响应消息
+     */
     public static final int RESPONSE_MESSAGE = 21;
 
+    /**
+     * 请求聊天记录消息
+     */
+    public static final int LOAD_RECORD_REQUEST_MESSAGE = 22;
+    /**
+     * 响应聊天记录消息
+     */
+    public static final int LOAD_RECORD_RESPONSE_MESSAGE = 23;
 
 }

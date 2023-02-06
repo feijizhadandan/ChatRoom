@@ -1,40 +1,64 @@
 package com.zhen.server.user;
 
-import com.zhen.entity.User;
+import com.zhen.common.CommonResult;
+import com.zhen.server.channel.ChannelServiceFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class UserServiceImpl implements UserService {
 
     // 存储用户信息
-    static List<User> userList = new ArrayList<>();
+    HashMap<String, User> userMap;
 
-    static {
-        userList.add(new User("root", "root"));
-        userList.add(new User("zhen", "zhen"));
+    public UserServiceImpl() {
+        userMap = new HashMap<>();
+        userMap.put("root", new User("root", "root"));
+        userMap.put("zhen", new User("zhen", "zhen"));
+        userMap.put("aa", new User("aa", "aa"));
     }
 
     @Override
-    public boolean register(String username, String password) {
+    public CommonResult register(String username, String password) {
         // 检查是否有重名用户
-        for (User user : userList)
-            if (user.getUsername().equals(username))
-                return false;
+        if (userMap.containsKey(username))
+            return new CommonResult(false, "存在重名用户", null);
 
-        userList.add(new User(username, password));
-        return true;
+        userMap.put(username, new User(username, password));
+        return new CommonResult(true, "注册成功", null);
     }
 
     @Override
-    public boolean login(String username, String password) {
-        for (User user : userList)
-            if (user.getUsername().equals(username)) {
-                if (user.getPassword().equals(password))
-                    return true;
-                else
-                    break;
-            }
-        return false;
+    public CommonResult login(String username, String password) {
+        boolean isOnline = ChannelServiceFactory.getSessionService().checkIsOnline(username);
+        if (isOnline)
+            return new CommonResult(false, "该用户已登录，不可重复登录", null);
+
+        if (!userMap.containsKey(username))
+            return new CommonResult(false, "用户名不存在，登录失败", null);
+
+        User user = userMap.get(username);
+        if (user.getPassword().equals(password))
+            return new CommonResult(true, "登录成功", null);
+        else
+            return new CommonResult(false, "密码错误，登录失败", null);
+    }
+
+    /**
+     * 通过用户名获取用户对象
+     * @param username 用户名
+     * @return 用户对象
+     */
+    @Override
+    public User getUserByUsername(String username) {
+        return userMap.get(username);
+    }
+
+    @Override
+    public void updateUserGroups(HashSet<String> memberSet, String groupName) {
+        for (String name : memberSet) {
+            User user = userMap.get(name);
+            user.getGroups().add(groupName);
+        }
     }
 }

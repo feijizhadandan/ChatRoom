@@ -1,16 +1,26 @@
 package com.zhen.server.channel;
 
+import com.zhen.common.CommonResult;
 import io.netty.channel.Channel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.HashSet;
+
 public interface ChannelService {
 
-    // 通过用户名获取 channel
-    Channel getChannelByUsername(String username);
+    CommonResult getChannelByUsername(String username);
+
+    Channel[] getChannelsByUsernames(HashSet<String> usernames);
 
     // 添加 channel 记录
-    boolean addChannel(String username, Channel channel);
+    CommonResult addChannel(String username, Channel channel);
 
     // 删除 channel 记录
-    boolean deleteChannelByUsername(String username);
+    CommonResult deleteChannelByUsername(String username, Channel channel);
+
+    CommonResult deleteChannelForce(Channel channel);
+
+    boolean isAllOnline(HashSet<String> membersName);
+
+    boolean checkIsOnline(String username);
 }

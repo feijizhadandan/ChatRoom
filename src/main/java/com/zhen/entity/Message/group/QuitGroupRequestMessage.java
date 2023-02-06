@@ -9,8 +9,11 @@ public class QuitGroupRequestMessage extends Message {
 
     private String groupName;
 
-    public QuitGroupRequestMessage(String groupName) {
+    private String username;
+
+    public QuitGroupRequestMessage(String groupName, String username) {
         this.groupName = groupName;
+        this.username = username;
         messageType = MessageType.QUIT_GROUP_REQUEST_MESSAGE;
     }
 }

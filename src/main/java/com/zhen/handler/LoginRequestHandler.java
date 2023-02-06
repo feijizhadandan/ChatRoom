@@ -1,5 +1,6 @@
 package com.zhen.handler;
 
+import com.zhen.common.CommonResult;
 import com.zhen.entity.Message.login.LoginRequestMessage;
 import com.zhen.entity.Message.login.LoginResponseMessage;
 import com.zhen.server.channel.ChannelServiceFactory;
@@ -15,16 +16,16 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestMessage> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestMessage loginMessage) throws Exception {
-        boolean login = UserServiceFactory.getSessionService().login(loginMessage.getUsername(), loginMessage.getPassword());
+        CommonResult loginResult = UserServiceFactory.getUserService().login(loginMessage.getUsername(), loginMessage.getPassword());
         LoginResponseMessage responseMessage;
         // 登录成功
-        if (login) {
+        if (loginResult.isSuccess()) {
             // 将 channel —— username 进行存储
             ChannelServiceFactory.getSessionService().addChannel(loginMessage.getUsername(), ctx.channel());
-            responseMessage = new LoginResponseMessage(true, "登录成功");
+            responseMessage = new LoginResponseMessage(true, loginResult.getMsg());
         }
         else {
-            responseMessage = new LoginResponseMessage(false, "登录失败");
+            responseMessage = new LoginResponseMessage(false, loginResult.getMsg());
         }
         ctx.writeAndFlush(responseMessage);
     }
