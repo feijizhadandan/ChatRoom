@@ -1,6 +1,7 @@
 package com.zhen.client;
 
 
+import com.zhen.entity.Message.GetOnlineUserRequestMessage;
 import com.zhen.entity.Message.ResponseMessage;
 import com.zhen.entity.Message.chat.ChatRequestMessage;
 import com.zhen.entity.Message.chat.ChatToMessage;
@@ -163,7 +164,8 @@ public class ChatClient {
                                     System.out.println(" (5) gjoin [group name] ");
                                     System.out.println(" (6) gquit [group name] ");
                                     System.out.println(" (7) gall ");
-                                    System.out.println(" (8) quit ");
+                                    System.out.println(" (8) online ");
+                                    System.out.println(" (9) quit ");
                                     System.out.println("==========================");
                                     while (true) {
                                         String command = scanner.nextLine();
@@ -202,6 +204,10 @@ public class ChatClient {
                                             case "gall":
                                                 if (len != 1) error();
                                                 else ctx.writeAndFlush(new CheckMyGroupsRequestMessage(username));
+                                                break;
+                                            case "online":
+                                                if (len != 1) error();
+                                                else ctx.writeAndFlush(new GetOnlineUserRequestMessage());
                                                 break;
                                             case "quit":
                                                 if (len != 1) error();

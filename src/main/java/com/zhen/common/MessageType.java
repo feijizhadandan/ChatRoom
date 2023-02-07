@@ -110,4 +110,13 @@ public class MessageType {
      */
     public static final int LOAD_RECORD_RESPONSE_MESSAGE = 23;
 
+    /**
+     * 请求查看当前在线用户消息
+     */
+    public static final int GET_ONLINE_USER_REQUEST_MESSAGE = 24;
+    /**
+     * 响应查看当前在线用户消息
+     */
+    public static final int GET_ONLINE_USER_RESPONSE_MESSAGE = 25;
+
 }

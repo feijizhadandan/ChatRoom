@@ -34,6 +34,7 @@ public class ChatServer {
         JoinGroupRequestHandler joinGroupRequestHandler = new JoinGroupRequestHandler();
         QuitGroupRequestHandler quitGroupRequestHandler = new QuitGroupRequestHandler();
         QuitHandler quitHandler = new QuitHandler();
+        GetOnlineUserRequestHandler getOnlineUserRequestHandler = new GetOnlineUserRequestHandler();
 
         serverBootstrap.childHandler(new ChannelInitializer<NioSocketChannel>() {
             @Override
@@ -53,6 +54,7 @@ public class ChatServer {
                 pipeline.addLast(joinGroupRequestHandler);  // 专门处理加入群聊的处理器
                 pipeline.addLast(quitGroupRequestHandler);  // 专门处理退出群聊的处理器
                 pipeline.addLast(quitHandler);  // 专门处理连接断开的处理器
+                pipeline.addLast(getOnlineUserRequestHandler);  // 专门处理查看在线用户的处理器
             }
         });
         serverBootstrap.bind(9999);

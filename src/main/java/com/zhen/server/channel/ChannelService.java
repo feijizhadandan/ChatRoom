@@ -5,6 +5,8 @@ import io.netty.channel.Channel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public interface ChannelService {
 
@@ -23,4 +25,6 @@ public interface ChannelService {
     boolean isAllOnline(HashSet<String> membersName);
 
     boolean checkIsOnline(String username);
+
+    Set<String> getOnlineUser();
 }

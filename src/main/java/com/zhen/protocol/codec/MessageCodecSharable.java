@@ -144,6 +144,9 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         if (messageType == MessageType.LOAD_RECORD_REQUEST_MESSAGE)
             return JSON.parseObject(msgJson, LoadRecordRequestMessage.class);
 
+        if (messageType == MessageType.GET_ONLINE_USER_REQUEST_MESSAGE)
+            return JSON.parseObject(msgJson, GetOnlineUserRequestMessage.class);
+
 
         return null;
     }

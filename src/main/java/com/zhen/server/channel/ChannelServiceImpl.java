@@ -6,6 +6,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ChannelServiceImpl implements ChannelService {
 
@@ -115,5 +117,14 @@ public class ChannelServiceImpl implements ChannelService {
     @Override
     public boolean checkIsOnline(String username) {
         return usernameChannelMap.containsKey(username);
+    }
+
+    /**
+     * 获取所有在线用户名称
+     * @return 用户名称集合
+     */
+    @Override
+    public Set<String> getOnlineUser() {
+        return usernameChannelMap.keySet();
     }
 }

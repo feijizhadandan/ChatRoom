@@ -5,6 +5,8 @@
         <!-- encoder的默认实现类是ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+            <!-- 日志的输出格式改为 GBK，因为操作系统大多是 GBK 格式的 -->
+            <charset>GBK</charset>
         </encoder>
     </appender>
 
