@@ -233,7 +233,7 @@ public class ChatClient {
                 });
             }
         });
-        ChannelFuture channelFuture = bootstrap.connect(new InetSocketAddress(9999));
+        ChannelFuture channelFuture = bootstrap.connect(new InetSocketAddress("47.106.122.140", 16666));
         try {
             Channel channel = channelFuture.sync().channel();
             ChannelFuture closeFuture = channel.closeFuture();

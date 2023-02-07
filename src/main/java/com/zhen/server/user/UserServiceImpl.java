@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
         userMap = new HashMap<>();
         userMap.put("root", new User("root", "root"));
         userMap.put("zhen", new User("zhen", "zhen"));
-        userMap.put("aa", new User("aa", "aa"));
     }
 
     @Override

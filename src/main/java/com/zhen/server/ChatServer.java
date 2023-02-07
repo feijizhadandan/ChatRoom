@@ -57,7 +57,7 @@ public class ChatServer {
                 pipeline.addLast(getOnlineUserRequestHandler);  // 专门处理查看在线用户的处理器
             }
         });
-        serverBootstrap.bind(9999);
+        serverBootstrap.bind(16666);
 
     }
 }

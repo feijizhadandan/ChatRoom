@@ -5,7 +5,7 @@ package com.zhen.common;
  */
 public class RecordConstant {
 
-    public final static String SAVE_PATH = "C:\\Users\\zengzhen\\Desktop\\";
+    public final static String SAVE_PATH = "/root/chatroom/record/";
 
     public final static String PREFIX = "ChatRecord";
 

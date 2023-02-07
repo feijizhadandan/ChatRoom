@@ -27,7 +27,7 @@ public class RecordUtil {
             OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);//指定以UTF-8格式写入文件
             osw.write(time + content);
             // 一个聊天记录就换一行
-            osw.write("\r\n");  // TODO linux需要区分
+            osw.write("\n");  // TODO linux需要区分
 
             // 释放资源
             osw.close();

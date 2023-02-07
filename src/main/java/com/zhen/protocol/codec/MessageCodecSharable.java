@@ -25,6 +25,8 @@ import java.util.List;
 
 /**
  *  必须和 LengthFieldBasedFrameDecoder 一起使用，保证收到的 byteBuf 是完整的
+ *
+ *  字符集统一为 UTF-8
  */
 @ChannelHandler.Sharable
 @Slf4j
@@ -52,7 +54,8 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
 
         // Message 对象序列化后转换为字节数组
         String toJSONString = JSON.toJSONString(message);
-        byte[] jsonBytes = toJSONString.getBytes();
+        // 编码格式要统一为 UTF-8
+        byte[] jsonBytes = toJSONString.getBytes(StandardCharsets.UTF_8);
 
         // 正文长度：4 字节
         byteBuf.writeInt(jsonBytes.length);
@@ -70,7 +73,7 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
      */
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> list) throws Exception {
-        String magicCode = new String(ByteBufUtil.getBytes(byteBuf.readBytes(6)));
+        String magicCode = new String(ByteBufUtil.getBytes(byteBuf.readBytes(6)), StandardCharsets.UTF_8);
         byte version = byteBuf.readByte();
         byte serializerType = byteBuf.readByte();
         int messageType = byteBuf.readInt();
@@ -81,11 +84,9 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         byte[] msgBytes = new byte[msgLength];
         byteBuf.readBytes(msgBytes, 0, msgLength);
         // 将 Message 的字节数组转换为 Json 字符串
-        String msgJson = new String(msgBytes);
+        String msgJson = new String(msgBytes, StandardCharsets.UTF_8);
         // Json 反序列化
         Message message = parseJson(messageType, msgJson);
-
-        log.debug("{} {} {} {} {} {}", magicCode, version, serializerType, messageType, sequenceId, msgLength);
         // 将内容放入容器传到下一个处理器
         list.add(message);
     }
