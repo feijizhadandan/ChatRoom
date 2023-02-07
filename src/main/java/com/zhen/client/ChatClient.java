@@ -32,7 +32,7 @@ public class ChatClient {
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.channel(NioSocketChannel.class);
-        NioEventLoopGroup workerEventLoopGroup = new NioEventLoopGroup();
+            NioEventLoopGroup workerEventLoopGroup = new NioEventLoopGroup();
         bootstrap.group(workerEventLoopGroup);
 
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
