@@ -53,7 +53,7 @@
               <archive>
                 <manifest>
                   <mainClass>
-                    com.zhen.client.ChatClient
+                    com.zhen.server.ChatServer
                   </mainClass>
                 </manifest>
               </archive>

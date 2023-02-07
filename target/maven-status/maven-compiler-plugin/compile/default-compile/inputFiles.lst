@@ -1,5 +1,6 @@
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\entity\Message\loadRecord\LoadRecordRequestMessage.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\common\RecordConstant.java
+D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\entity\Message\GetOnlineUserRequestMessage.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\server\user\UserServiceImpl.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\client\ChatClient.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\server\channel\ChannelServiceFactory.java
@@ -19,6 +20,7 @@ D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\handler\LoadRecordRequestHandler.
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\entity\Message\group\GroupCreateRequestMessage.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\handler\QuitHandler.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\entity\Message\group\CheckMyGroupsRequestMessage.java
+D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\handler\GetOnlineUserRequestHandler.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\entity\Message\login\LoginRequestMessage.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\server\ChatServer.java
 D:\MyCode\IDEA\ChatRoom\src\main\java\com\zhen\entity\Message\group\QuitGroupRequestMessage.java

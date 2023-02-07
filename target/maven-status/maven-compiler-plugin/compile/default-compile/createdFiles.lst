@@ -20,6 +20,7 @@ com\zhen\util\RecordUtil.class
 com\zhen\entity\Message\chat\ChatToMessage.class
 com\zhen\server\channel\ChannelService.class
 com\zhen\server\user\User.class
+com\zhen\entity\Message\GetOnlineUserRequestMessage.class
 com\zhen\server\user\UserServiceFactory.class
 com\zhen\client\ChatClient$1.class
 com\zhen\handler\group\CheckMembersRequestHandler.class
@@ -41,6 +42,7 @@ com\zhen\entity\Message\register\RegisterResponseMessage.class
 com\zhen\entity\Message\group\GroupSendToMessage.class
 com\zhen\handler\LoadRecordRequestHandler.class
 com\zhen\server\group\GroupService.class
+com\zhen\handler\GetOnlineUserRequestHandler.class
 com\zhen\handler\LoginRequestHandler.class
 com\zhen\common\MessageType.class
 com\zhen\server\user\UserService.class
